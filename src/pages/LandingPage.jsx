@@ -26,7 +26,7 @@ const LandingPage = () => {
       </header>
 
       {/* main */}
-      <main className="min-h-[calc(100vh-285px)] container w-[87%] mx-auto">
+      <main className="min-h-[calc(100vh-285px)]">
         <Outlet />
       </main>
 

@@ -123,7 +123,7 @@ const MainNav = () => {
 
       {/* menu for mobile device */}
       <div
-        className={`bg-[#001B38] md:hidden absolute w-full mx-auto h-min bg-base-100 py-6 font-medium z-[900] border-y border-gray-500 ${
+        className={`bg-[#001B38] md:hidden absolute w-full mx-auto h-min bg-base-100 py-6 font-medium z-[900] border-t border-gray-500 ${
           toggleMenuIcon && "hidden"
         }`}
       >
