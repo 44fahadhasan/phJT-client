@@ -1,3 +1,4 @@
+import Category from "../components/HomePage/Category";
 import HeroSection from "../components/HomePage/HeroSection";
 
 const HomePage = () => {
@@ -5,7 +6,9 @@ const HomePage = () => {
     <>
       <HeroSection />
 
-      <div className="container w-[87%] mx-auto"></div>
+      <div className="container w-[87%] mx-auto py-16">
+        <Category />
+      </div>
     </>
   );
 };
