@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { categorys } from "../../data/data";
+import { filters } from "../../data/data";
 import Heading from "../Heading";
 import CaegoryCard from "./CaegoryCard";
 
@@ -9,8 +9,8 @@ const Category = () => {
       <Heading title={"Top categories"} />
 
       <div className="grid lg:grid-cols-3 md:grid-cols-2 max-md:max-w-lg mx-auto gap-12">
-        {categorys?.map(({ _id, path, img, label }) => (
-          <Link key={_id} to={`Category/${path}`}>
+        {filters[0]?.options?.map(({ _id, img, label }) => (
+          <Link key={_id} to={`Category/${label?.split(" ")?.join("-")}`}>
             <CaegoryCard img={img} label={label} />
           </Link>
         ))}
