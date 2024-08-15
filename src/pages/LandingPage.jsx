@@ -26,7 +26,7 @@ const LandingPage = () => {
       </header>
 
       {/* main */}
-      <main className="min-h-[calc(100vh-285px)]">
+      <main className="min-h-[calc(100vh-285px)] poppins">
         <Outlet />
       </main>
 

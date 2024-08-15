@@ -5,7 +5,7 @@ import CaegoryCard from "./CaegoryCard";
 
 const Category = () => {
   return (
-    <div className="max-w-6xl mx-auto poppins">
+    <div className="max-w-6xl mx-auto">
       <Heading title={"Top categories"} />
 
       <div className="grid lg:grid-cols-3 md:grid-cols-2 max-md:max-w-lg mx-auto gap-12">
