@@ -201,26 +201,26 @@ export const filters = [
 
   {
     _id: "2",
-    title: "Colors",
+    title: "Brand",
     options: [
       {
         _id: "1",
-        label: "Black",
+        label: "Google",
         checked: false,
       },
       {
         _id: "2",
-        label: "White",
+        label: "Apple",
         checked: false,
       },
       {
         _id: "3",
-        label: "Red",
+        label: "Honor",
         checked: false,
       },
       {
         _id: "4",
-        label: "Green",
+        label: "Vivo",
         checked: false,
       },
     ],

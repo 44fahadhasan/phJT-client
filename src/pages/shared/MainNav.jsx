@@ -64,7 +64,7 @@ const MainNav = () => {
           </div>
           <div className=" bg-primary hover:bg-secondary transition-all duration-500 pl-[21px] py-2 rounded-[30px]">
             <Link
-              to="/Register"
+              to="Login/Register"
               onClick={() => setToggleMenuIcon(!toggleMenuIcon)}
             >
               <Button

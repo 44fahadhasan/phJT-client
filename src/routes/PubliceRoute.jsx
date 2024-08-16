@@ -5,6 +5,7 @@ import LandingPage from "../pages/LandingPage";
 import LoginPage from "../pages/LoginPage";
 import ProductsPage from "../pages/ProductsPage";
 import RegisterPage from "../pages/RegisterPage";
+import RootLayoutForAuthenticatedPages from "../pages/RootLayoutForAuthenticatedPages";
 
 const routes = createBrowserRouter([
   {
@@ -20,13 +21,21 @@ const routes = createBrowserRouter([
         path: "Products",
         element: <ProductsPage />,
       },
+    ],
+  },
+
+  // authenticated pages
+  {
+    path: "Login",
+    element: <RootLayoutForAuthenticatedPages />,
+    children: [
+      {
+        index: true,
+        element: <LoginPage />,
+      },
       {
         path: "Register",
         element: <RegisterPage />,
-      },
-      {
-        path: "Login",
-        element: <LoginPage />,
       },
     ],
   },
