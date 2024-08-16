@@ -20,14 +20,8 @@ const DataProvider = ({ children }) => {
   const [filter, setFilter] = useState({});
 
   //
-  console.log("searchText in Context", searchText);
-  console.log("perPageItem in Context", perPageItem);
-  console.log("sort in Context", sort);
-  console.log("range in Context", range);
-  console.log("filter in Context", filter);
-
-  //
   const datas = {
+    searchText,
     setSearchText,
     perPageItem,
     setPerPageItem,
@@ -35,6 +29,7 @@ const DataProvider = ({ children }) => {
     setSort,
     range,
     setRange,
+    filter,
     setFilter,
   };
 
