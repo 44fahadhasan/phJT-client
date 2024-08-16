@@ -141,11 +141,7 @@ export const products = [
   },
 ];
 
-export const showOptions = [
-  { number: "10" },
-  { number: "20" },
-  { number: "30" },
-];
+export const showOptions = [{ number: 10 }, { number: 20 }, { number: 30 }];
 
 export const sortOptions = [
   { name: "Default" },

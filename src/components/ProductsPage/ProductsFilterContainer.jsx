@@ -2,12 +2,15 @@ import { Select } from "@headlessui/react";
 import { FunnelIcon, Squares2X2Icon } from "@heroicons/react/20/solid";
 import { useState } from "react";
 import { products, showOptions, sortOptions } from "../../data/data";
+import useDataHandler from "../../hooks/useDataHandler";
 import ProductCard from "../ProductCard";
 import Filter from "./Filter";
 import FilterForMobile from "./FilterForMobile";
 
 const ProductsFilterContainer = () => {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
+
+  const { perPageItem, setPerPageItem, sort, setSort } = useDataHandler();
 
   return (
     <>
@@ -27,28 +30,43 @@ const ProductsFilterContainer = () => {
 
           {/* sort right area */}
           <div className="flex items-center gap-2 sm:gap-4 md:gap-6">
-            {/* menu for per page products show */}
+            {/* select for per page products show */}
             <div className="inline-flex gap-1 justify-center text-sm lg:text-base">
-              <label className=" font-medium text-black">Show:</label>
-              <Select name="status" aria-label="Show Products Per Page">
-                {showOptions.map(({ number }) => (
-                  <option key={number} defaultValue={number}>
-                    {number}
-                  </option>
-                ))}
-              </Select>
+              <label className=" font-medium text-black cursor-pointer">
+                Show:
+                <Select
+                  value={perPageItem}
+                  onChange={(e) => setPerPageItem(Number(e.target.value))}
+                  name="status"
+                  aria-label="Show Products Per Page"
+                >
+                  {showOptions.map(({ number }) => (
+                    <option key={number} value={number}>
+                      {number}
+                    </option>
+                  ))}
+                </Select>
+              </label>
             </div>
 
-            {/* menu for newset price low and high */}
+            {/* select for newset price low and high */}
             <div className="inline-flex gap-1 justify-center text-sm lg:text-base">
-              <h3 className=" font-medium text-black">Sort By:</h3>
-              <Select className="w-[85px]" name="status" aria-label="sort">
-                {sortOptions.map(({ name }) => (
-                  <option key={name} defaultValue={name}>
-                    {name}
-                  </option>
-                ))}
-              </Select>
+              <label className=" font-medium text-black cursor-pointer">
+                Sort By:
+                <Select
+                  value={sort}
+                  onChange={(e) => setSort(e.target.value)}
+                  className="w-[85px]"
+                  name="status"
+                  aria-label="products sort"
+                >
+                  {sortOptions.map(({ name }) => (
+                    <option key={name} value={name}>
+                      {name}
+                    </option>
+                  ))}
+                </Select>
+              </label>
             </div>
 
             {/* filter icon for mobile device */}

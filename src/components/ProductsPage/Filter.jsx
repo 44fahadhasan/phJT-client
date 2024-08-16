@@ -6,9 +6,20 @@ import {
 import { MinusIcon, PlusIcon } from "@heroicons/react/20/solid";
 import PropTypes from "prop-types";
 import { filters } from "../../data/data";
+import useDataHandler from "../../hooks/useDataHandler";
 import DynamicRange from "./DynamicRange";
 
 const Filter = ({ hide }) => {
+  const { setFilter } = useDataHandler();
+
+  const handleFilterValue = (e) => {
+    const targetInput = e.target;
+    const filterValue = targetInput.value;
+    const filterChecked = targetInput.checked;
+
+    setFilter({ label: filterValue, checked: filterChecked });
+  };
+
   return (
     <form
       className={`mt-4 lg:mt-0 border-t lg:border-t-0 border-gray-200 ${
@@ -17,7 +28,7 @@ const Filter = ({ hide }) => {
     >
       {/* price range */}
       <div className="px-4 lg:px-0 py-6">
-        <DynamicRange min={0} max={1000} />
+        <DynamicRange />
       </div>
 
       {/* filters start here */}
@@ -55,6 +66,7 @@ const Filter = ({ hide }) => {
                 <div key={option?._id} className="flex items-center">
                   {/* input checkbox */}
                   <input
+                    onChange={handleFilterValue}
                     defaultValue={option?.label}
                     defaultChecked={option?.checked}
                     id={`${option?._id}${idx}${option?.label

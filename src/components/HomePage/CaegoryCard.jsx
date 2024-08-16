@@ -17,7 +17,7 @@ const CaegoryCard = ({ img, label }) => {
 };
 
 CaegoryCard.propTypes = {
-  img: PropTypes.element,
+  img: PropTypes.string,
   label: PropTypes.string,
 };
 

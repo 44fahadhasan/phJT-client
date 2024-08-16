@@ -1,14 +1,9 @@
-import PropTypes from "prop-types";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
-import { useState } from "react";
+import useDataHandler from "../../hooks/useDataHandler";
 
-const DynamicRange = ({ min, max }) => {
-  const [range, setRange] = useState([min, max]);
-
-  const handleRangeChange = (newRange) => {
-    setRange(newRange);
-  };
+const DynamicRange = () => {
+  const { range, setRange } = useDataHandler();
 
   return (
     <div>
@@ -17,10 +12,10 @@ const DynamicRange = ({ min, max }) => {
       </h3>
       <Slider
         range
-        min={min}
-        max={max}
+        min={0}
+        max={100} //todo 100 load max price from database
         value={range}
-        onChange={handleRangeChange}
+        onChange={(newRange) => setRange(newRange)}
         allowCross={false}
         trackStyle={[{ backgroundColor: "#FFBB38" }]}
         handleStyle={[
@@ -31,11 +26,6 @@ const DynamicRange = ({ min, max }) => {
       />
     </div>
   );
-};
-
-DynamicRange.propTypes = {
-  min: PropTypes.number,
-  max: PropTypes.number,
 };
 
 export default DynamicRange;
