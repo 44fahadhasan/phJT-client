@@ -8,6 +8,7 @@ const useDataLoaderFromApi = () => {
 
   const {
     searchText,
+    setTotalProductsNumber,
     activePageNumber,
     parPageProduct,
     sort,
@@ -29,9 +30,9 @@ const useDataLoaderFromApi = () => {
           (activePageNumber, activePageNumber)
         }&size=${parPageProduct}&sort=${sort}&priceRange=${`${range[0]}-${range[1]}`}&category=${modifyCategorys}&brand=${modifyBrands}`
       )
-      .then((data) => {
-        setProductsData(data);
-        console.log(data);
+      .then(({ data }) => {
+        setProductsData(data?.result);
+        setTotalProductsNumber(data?.totalProcutsNumber);
         setLoading(false);
       });
 
@@ -45,6 +46,7 @@ const useDataLoaderFromApi = () => {
     range,
     searchText,
     sort,
+    setTotalProductsNumber,
   ]);
 
   //   retuen data for outside commopent

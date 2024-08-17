@@ -5,6 +5,7 @@ import { showOptions, sortOptions } from "../../data/data";
 import useDataHandler from "../../hooks/useDataHandler";
 import useDataLoaderFromApi from "../../hooks/useDataLoaderFromApi";
 import Loading from "../Loading";
+import NotFound from "../NotFound";
 import ProductCard from "../ProductCard";
 import Filter from "./Filter";
 import FilterForMobile from "./FilterForMobile";
@@ -17,7 +18,7 @@ const ProductsFilterContainer = () => {
 
   const { productsData, loading } = useDataLoaderFromApi();
 
-  const products = productsData?.data;
+  const products = productsData;
 
   //
   return (
@@ -111,9 +112,13 @@ const ProductsFilterContainer = () => {
                 <Loading />
               ) : (
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xlg:grid-cols-4 gap-6">
-                  {products?.map((product) => (
-                    <ProductCard product={product} key={product?._id} />
-                  ))}
+                  {products.length === 0 ? (
+                    <NotFound />
+                  ) : (
+                    products?.map((product) => (
+                      <ProductCard product={product} key={product?._id} />
+                    ))
+                  )}
                 </div>
               )}
 
