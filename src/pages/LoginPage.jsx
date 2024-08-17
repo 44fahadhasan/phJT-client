@@ -1,11 +1,19 @@
+import toast from "react-hot-toast";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Button from "../components/Button";
 import Heading from "../components/Heading";
 import InputFiled from "../components/InputFiled";
+import useAuth from "../hooks/useAuth";
 
 const LoginPage = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  // auth
+  const { userLogin } = useAuth();
+
   // handle login
   const handleLogin = async (event) => {
     event.preventDefault();
@@ -15,12 +23,16 @@ const LoginPage = () => {
     const email = input.email.value;
     const password = input.password.value;
 
-    const loginIfno = {
-      email,
-      password,
-    };
-
-    console.log(loginIfno);
+    userLogin(email, password)
+      .then(() => {
+        // login success
+        input.reset();
+        toast.success("Login successful");
+        navigate(`${location?.state ?? "/"}`);
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
   };
 
   return (

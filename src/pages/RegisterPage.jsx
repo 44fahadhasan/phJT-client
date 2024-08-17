@@ -1,24 +1,39 @@
+import toast from "react-hot-toast";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { MdEmail, MdOutlineDriveFileRenameOutline } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Button from "../components/Button";
 import Heading from "../components/Heading";
 import InputFiled from "../components/InputFiled";
+import useAuth from "../hooks/useAuth";
 
 const RegisterPage = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  // auth
+  const { createNewUser } = useAuth();
+
   // const handle singup
   const handleSingup = async (event) => {
     event.preventDefault();
 
     const input = event.target;
 
-    const newUser = {
-      name: input.name.value,
-      email: input.email.value,
-      password: input.password.value,
-    };
+    // const name = input.name.value;
+    const email = input.email.value;
+    const password = input.password.value;
 
-    console.log(newUser);
+    createNewUser(email, password)
+      .then(() => {
+        // user profile
+        input.reset();
+        toast.success("Account created successfully");
+        navigate(`${location?.state ?? "/"}`);
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
   };
 
   return (

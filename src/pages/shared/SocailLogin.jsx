@@ -1,27 +1,35 @@
-import { FaFacebook } from "react-icons/fa";
+import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
-import { SiGithub } from "react-icons/si";
+import { useLocation, useNavigate } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 
 const SocailLogin = () => {
-  const handleSocailLogin = (provider) => {
-    console.log(provider);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  // auth
+  const { loginWithGoogle } = useAuth();
+
+  // handle social login
+  const handleSocailLogin = (socialLogin, provider) => {
+    socialLogin()
+      .then(() => {
+        toast.success(`Login successful by ${provider}`);
+        navigate(`${location?.state ?? "/"}`);
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
   };
 
   return (
     <div className="space-x-6 flex justify-center text-3xl">
       {/* google */}
-      <button type="button" onClick={() => handleSocailLogin("google")}>
+      <button
+        type="button"
+        onClick={() => handleSocailLogin(loginWithGoogle, "google")}
+      >
         <FcGoogle />
-      </button>
-
-      {/* github */}
-      <button type="button" onClick={() => handleSocailLogin("github")}>
-        <SiGithub />
-      </button>
-
-      {/* facebook */}
-      <button type="button" onClick={() => handleSocailLogin("facebook")}>
-        <FaFacebook className="text-[#1976D2]" />
       </button>
     </div>
   );

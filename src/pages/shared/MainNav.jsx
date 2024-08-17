@@ -1,26 +1,37 @@
 import { useState } from "react";
+import toast from "react-hot-toast";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import { Link, NavLink } from "react-router-dom";
 import Button from "../../components/Button";
 import Logo from "../../components/Logo";
 import { menuItems } from "../../data/data";
+import useAuth from "../../hooks/useAuth";
 
 const MainNav = () => {
   const [toggleMenuIcon, setToggleMenuIcon] = useState(true);
 
-  const user = !true;
+  const { userLogOut, user } = useAuth();
 
   const handelToggleMenu = () => {
     setToggleMenuIcon(!toggleMenuIcon);
   };
 
-  const handleLogOut = () => {};
+  const handleLogOut = () => {
+    userLogOut()
+      .then(() => {
+        toast.success("successfully Logout");
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
+  };
 
   const userProfile = (
     <div className="w-10 rounded-full">
       <img
         className="object-cover"
         alt="Profile"
+        referrerPolicy="no-referrer"
         src={
           user?.photoURL ||
           "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_640.png"
