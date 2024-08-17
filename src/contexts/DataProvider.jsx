@@ -53,7 +53,7 @@ const DataProvider = ({ children }) => {
 };
 
 DataProvider.propTypes = {
-  children: PropTypes.element,
+  children: PropTypes.any,
 };
 
 export default DataProvider;
