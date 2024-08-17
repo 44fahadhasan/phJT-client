@@ -1,17 +1,25 @@
 import { Select } from "@headlessui/react";
 import { FunnelIcon, Squares2X2Icon } from "@heroicons/react/20/solid";
 import { useState } from "react";
-import { products, showOptions, sortOptions } from "../../data/data";
+import { showOptions, sortOptions } from "../../data/data";
 import useDataHandler from "../../hooks/useDataHandler";
+import useDataLoaderFromApi from "../../hooks/useDataLoaderFromApi";
+import Loading from "../Loading";
 import ProductCard from "../ProductCard";
 import Filter from "./Filter";
 import FilterForMobile from "./FilterForMobile";
+import Pagination from "./Pagination";
 
 const ProductsFilterContainer = () => {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 
-  const { perPageItem, setPerPageItem, sort, setSort } = useDataHandler();
+  const { parPageProduct, setParPageProduct, sort, setSort } = useDataHandler();
 
+  const { productsData, loading } = useDataLoaderFromApi();
+
+  const products = productsData?.data;
+
+  //
   return (
     <>
       {/* filter mobile  dialog */}
@@ -30,15 +38,15 @@ const ProductsFilterContainer = () => {
 
           {/* sort right area */}
           <div className="flex items-center gap-2 sm:gap-4 md:gap-6">
-            {/* select for per page products show */}
+            {/* select for per page product show */}
             <div className="inline-flex gap-1 justify-center text-sm lg:text-base">
               <label className=" font-medium text-black cursor-pointer">
                 Show:
                 <Select
-                  value={perPageItem}
-                  onChange={(e) => setPerPageItem(Number(e.target.value))}
+                  value={parPageProduct}
+                  onChange={(e) => setParPageProduct(e.target.value)}
                   name="status"
-                  aria-label="Show Products Per Page"
+                  aria-label="per page product show"
                 >
                   {showOptions.map(({ number }) => (
                     <option key={number} value={number}>
@@ -99,11 +107,18 @@ const ProductsFilterContainer = () => {
 
             {/* Products grid start here */}
             <div className="lg:col-span-3">
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xlg:grid-cols-4 gap-6">
-                {products?.slice(0, 9)?.map((product) => (
-                  <ProductCard product={product} key={product?._id} />
-                ))}
-              </div>
+              {loading ? (
+                <Loading />
+              ) : (
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xlg:grid-cols-4 gap-6">
+                  {products?.map((product) => (
+                    <ProductCard product={product} key={product?._id} />
+                  ))}
+                </div>
+              )}
+
+              {/* pagination */}
+              <Pagination />
             </div>
           </div>
         </section>

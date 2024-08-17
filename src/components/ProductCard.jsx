@@ -5,7 +5,17 @@ import { GrFavorite } from "react-icons/gr";
 import { Link } from "react-router-dom";
 
 const ProductCard = ({ product }) => {
-  const { _id, img, title, price, ratings, description } = product || {};
+  const {
+    _id,
+    img,
+    title,
+    price,
+    ratings,
+    description,
+    date,
+    category,
+    brand,
+  } = product || {};
 
   return (
     <Link to={`Products/${_id}`}>
@@ -17,23 +27,22 @@ const ProductCard = ({ product }) => {
         <div className="w-5/6 h-[260px] p-4 overflow-hidden mx-auto aspect-w-16 aspect-h-8">
           <img
             src={img}
-            alt="Product 1"
+            alt={title?.slice(0, 10)}
             className="h-full w-full object-cover"
           />
         </div>
 
         <div className="p-6 bg-white">
+          <p className="text-black text-sm mb-2">
+            Added: {new Date(date).toLocaleString()}
+          </p>
           <h3 className="text-lg font-bold text-black">
             {title?.slice(0, 20)}
           </h3>
 
-          <h4 className="text-lg text-black font-bold mt-2">${price}</h4>
+          <div className="flex justify-between items-center mt-2">
+            <h4 className="text-lg text-black font-bold ">${price}</h4>
 
-          <p className="text-gray-600 text-sm mt-2">
-            {description?.slice(0, 50)} . . .
-          </p>
-
-          <div className="flex space-x-2 mt-4">
             <Rating
               style={{
                 maxWidth: 100,
@@ -41,6 +50,15 @@ const ProductCard = ({ product }) => {
               value={ratings}
               readOnly
             />
+          </div>
+
+          <p className="text-gray-600 text-sm mt-2">
+            {description?.slice(0, 50)}..
+          </p>
+
+          <div className="flex justify-between items-center mt-4">
+            <p className="text-black text-sm">{category}</p>
+            <p className="text-black text-sm">{brand}</p>
           </div>
         </div>
       </div>

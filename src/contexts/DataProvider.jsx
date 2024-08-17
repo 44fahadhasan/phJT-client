@@ -5,10 +5,16 @@ export const DataContext = createContext(null);
 
 const DataProvider = ({ children }) => {
   // state for search text
-  const [searchText, setSearchText] = useState(null);
+  const [searchText, setSearchText] = useState("");
+
+  // staste for total products numbers
+  const [totalProductsNumber, setTotalProductsNumber] = useState(50);
+
+  //   state for page show
+  const [activePageNumber, setActivePageNumber] = useState(0);
 
   //   state for per page products show
-  const [perPageItem, setPerPageItem] = useState(10);
+  const [parPageProduct, setParPageProduct] = useState(6);
 
   //   state for product sorting
   const [sort, setSort] = useState("Default");
@@ -16,21 +22,30 @@ const DataProvider = ({ children }) => {
   //   state for product price range
   const [range, setRange] = useState([0, 100]); //todo 100
 
-  //   state for product sorting
-  const [filter, setFilter] = useState({});
+  //   state for product categorys
+  const [categorys, setCategorys] = useState([]);
+
+  //   state for product brands
+  const [brands, setBrands] = useState([]);
 
   //
   const datas = {
     searchText,
     setSearchText,
-    perPageItem,
-    setPerPageItem,
+    totalProductsNumber,
+    setTotalProductsNumber,
+    parPageProduct,
+    setParPageProduct,
+    activePageNumber,
+    setActivePageNumber,
     sort,
     setSort,
     range,
     setRange,
-    filter,
-    setFilter,
+    categorys,
+    setCategorys,
+    brands,
+    setBrands,
   };
 
   //

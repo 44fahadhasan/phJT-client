@@ -10,14 +10,40 @@ import useDataHandler from "../../hooks/useDataHandler";
 import DynamicRange from "./DynamicRange";
 
 const Filter = ({ hide }) => {
-  const { setFilter } = useDataHandler();
+  const { categorys, setCategorys, brands, setBrands } = useDataHandler();
 
-  const handleFilterValue = (e) => {
+  const handleFilters = (e, title) => {
     const targetInput = e.target;
     const filterValue = targetInput.value;
     const filterChecked = targetInput.checked;
 
-    setFilter({ label: filterValue, checked: filterChecked });
+    // categorys filter
+    if (title === "Categorys") {
+      if (!categorys?.includes(filterValue) && filterChecked) {
+        setCategorys([...categorys, filterValue]);
+
+        //
+      } else if (categorys?.includes(filterValue) && !filterChecked) {
+        const updateCategorys = categorys.filter(
+          (value) => value !== filterValue
+        );
+
+        setCategorys(updateCategorys);
+      }
+    }
+
+    // brand filter
+    if (title === "Brand") {
+      if (!brands?.includes(filterValue) && filterChecked) {
+        setBrands([...brands, filterValue]);
+
+        //
+      } else if (brands?.includes(filterValue) && !filterChecked) {
+        const updateBrand = brands.filter((value) => value !== filterValue);
+
+        setBrands(updateBrand);
+      }
+    }
   };
 
   return (
@@ -66,7 +92,7 @@ const Filter = ({ hide }) => {
                 <div key={option?._id} className="flex items-center">
                   {/* input checkbox */}
                   <input
-                    onChange={handleFilterValue}
+                    onChange={(e) => handleFilters(e, title)}
                     defaultValue={option?.label}
                     defaultChecked={option?.checked}
                     id={`${option?._id}${idx}${option?.label

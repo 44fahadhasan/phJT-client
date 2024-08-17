@@ -58,7 +58,7 @@ export const products = [
     ratings: 4.6,
     description:
       "Create smoothies, soups, and sauces with ease using this high-speed blender. Featuring a powerful motor and sharp stainless steel blades, this blender can handle everything from frozen fruits to tough vegetables. The large 64-ounce BPA-free pitcher allows you to make large batches for family meals or meal prepping. With multiple speed settings and a pulse function, you can achieve the perfect texture for any recipe. The sleek design and easy-to-clean components make this blender a must-have for any kitchen.",
-    category: "Home & Kitchen",
+    category: "Home and Kitchen",
   },
   {
     _id: "6",
@@ -141,7 +141,7 @@ export const products = [
   },
 ];
 
-export const showOptions = [{ number: 10 }, { number: 20 }, { number: 30 }];
+export const showOptions = [{ number: 6 }, { number: 9 }, { number: 12 }];
 
 export const sortOptions = [
   { name: "Default" },
@@ -170,7 +170,7 @@ export const filters = [
       },
       {
         _id: "3",
-        label: "Home & Kitchen",
+        label: "Home and Kitchen",
         checked: false,
         img: "https://media.designcafe.com/wp-content/uploads/2020/10/26182026/modular-kitchen-accessories-for-modern-homes.jpg",
       },
@@ -182,13 +182,13 @@ export const filters = [
       },
       {
         _id: "5",
-        label: "Sports & Outdoors",
+        label: "Sports and Outdoors",
         checked: false,
         img: "https://img.freepik.com/premium-vector/diverse-group-people-enjoying-outdoor-activities-running-cycling-mountain-view_1294240-10673.jpg?w=740",
       },
       {
         _id: "6",
-        label: "Beauty & Personal Care",
+        label: "Beauty and Personal Care",
         checked: false,
         img: "https://cdn.cdnparenting.com/articles/2018/09/15-beauty-products-you-dont-need-to-waste-your-money-on.webp",
       },
