@@ -10,7 +10,7 @@ const JustForYou = () => {
       <Heading title={"Just For You"} />
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {products?.slice(0, 8)?.map((product) => (
+        {products?.map((product) => (
           <ProductCard product={product} key={product?._id} />
         ))}
       </div>
