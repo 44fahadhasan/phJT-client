@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
+import CategoryPage from "../pages/CategoryPage";
 import ErrorPage from "../pages/ErrorPage";
 import HomePage from "../pages/HomePage";
 import LandingPage from "../pages/LandingPage";
@@ -20,6 +21,10 @@ const routes = createBrowserRouter([
       {
         path: "Products",
         element: <ProductsPage />,
+      },
+      {
+        path: "Category/:categoryName",
+        element: <CategoryPage />,
       },
     ],
   },
