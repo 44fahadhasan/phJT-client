@@ -4,6 +4,7 @@ import ErrorPage from "../pages/ErrorPage";
 import HomePage from "../pages/HomePage";
 import LandingPage from "../pages/LandingPage";
 import LoginPage from "../pages/LoginPage";
+import ProductDetailsPage from "../pages/ProductDetailsPage";
 import ProductsPage from "../pages/ProductsPage";
 import RegisterPage from "../pages/RegisterPage";
 import RootLayoutForAuthenticatedPages from "../pages/RootLayoutForAuthenticatedPages";
@@ -21,6 +22,10 @@ const routes = createBrowserRouter([
       {
         path: "Products",
         element: <ProductsPage />,
+      },
+      {
+        path: "Products/:id",
+        element: <ProductDetailsPage />,
       },
       {
         path: "Category/:categoryName",

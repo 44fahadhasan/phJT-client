@@ -18,7 +18,7 @@ const ProductCard = ({ product }) => {
   } = product || {};
 
   return (
-    <Link to={`Products/${_id}`}>
+    <Link to={`/Products/${_id}`}>
       <div className="bg-gray-50 shadow-md overflow-hidden rounded-lg cursor-pointer hover:-translate-y-2 transition-all relative">
         <div className="bg-gray-100 w-10 h-10 flex items-center justify-center rounded-full cursor-pointer absolute top-3 right-3">
           <GrFavorite className="fill-black inline-block w-4" />
